@@ -1,6 +1,6 @@
 const db = require("./db/connection");
 const express = require("express");
-const inquirer = require("./lib/departments");
+const inquirerStart = require("./lib/departments");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -19,6 +19,6 @@ db.connect(err => {
     console.log('database is connected.');
     app.listen(PORT, () => {
         console.log(`server active on PORT ${PORT}`);
-        inquirer();
+        inquirerStart();
     });
 });
