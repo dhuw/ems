@@ -29,4 +29,4 @@
   :octocat: Find me on GitHub: [dhuw](https://github.com/dhuw)<br />
   <br />
   ✉️ Email me with any questions: hazlewood.dyl@gmail.com<br /><br />
-  _This README was generated with ❤️ by [README-generator](https://github.com/jpd61/README-generator)_
+
