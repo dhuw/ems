@@ -2,7 +2,7 @@
   
   ![badge](https://img.shields.io/badge/license-MIT-brightgreen)<br />
   ## Description
-  🔍 
+  🔍 A mock company's system of managing Employees, their roles and different departments. 
   ## Table of Contents
   - [Description](#description)
   - [Installation](#installation)
