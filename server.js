@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 const db = require("./db/connection");
 const express = require("express");
 const inquirerStart = require("./lib/departments");
