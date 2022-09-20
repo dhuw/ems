@@ -1,0 +1,26 @@
+{
+  "name": "ems",
+  "version": "1.0.0",
+  "description": "employee management system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhuw/ems.git"
+  },
+  "author": "dhuw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhuw/ems/issues"
+  },
+  "homepage": "https://github.com/dhuw/ems#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "console.table": "^0.10.0",
+    "express": "^4.18.1",
+    "inquirer": "^9.1.2",
+    "mysql2": "^2.3.3"
+  }
+}
