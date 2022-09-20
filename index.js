@@ -55,7 +55,125 @@ const promptInit = () => {
     .catch((err) => console.error(err));
 };
 
+// prompts amd var define
 
+const promptNewDep = () => {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'name',
+          message: "Input the new department name",
+        }
+      ])
+      .then((val) => {
+        createDepartment(val.name)
+      })
+      .catch((err) => console.error(err));
+  };
+  
+  const promptNewRole = () => {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'title',
+          message: "Input the new Role title",
+        },
+        {
+          type: 'input',
+          name: 'salary',
+          message: "Input the new Role salary",
+        },
+        {
+          type: 'list',
+          name: 'dept',
+          message: "Select which department this role is part of",
+          choices: deptArray
+        }
+      ])
+      .then((val) => {
+        createRole(val.title, val.salary, val.dept);
+      })
+      .catch((err) => console.error(err));
+  };
+  
+  const promptNewEmployee = () => {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'firstName',
+          message: "Input the employee's first name",
+        },
+        {
+          type: 'input',
+          name: 'lastName',
+          message: "Input the employees last name",
+        },
+        {
+          type: 'list',
+          name: 'role',
+          message: "Select the role this employee will have",
+          choices: roleArray
+        },
+        {
+          type: 'list',
+          name: 'manager',
+          message: "Select the manager this employee will have",
+          choices: managerArray
+        }
+      ])
+      .then((val) => {
+        createEmployee(val.firstName, val.lastName, val.role, val.manager);
+      })
+      .catch((err) => console.error(err));
+  };
+  
+  
+  function updateEmployee(){
+      inquirer
+      .prompt([
+        {
+          type: 'list',
+          name: 'employee',
+          message: "Select which employee to update",
+          choices: employeeArray
+        },
+        {
+          type: 'list',
+          name: 'role',
+          message: "Select a role to update for this employee",
+          choices: roleArray
+        }
+      ])
+      .then((val) => {
+        modifyEmployee(val.employee, val.role);
+      })
+      .catch((err) => console.error(err));
+  };
+  
+  function promptContinue() {
+    inquirer.prompt(
+      {
+        type: 'list',
+        name: 'answer',
+        message: "Continue?",
+        choices: ["yes", "no"]
+      }
+    )
+      .then(val => {
+        if (val.answer === "yes") {
+          promptInit();
+        } else {
+          db.end();
+        }
+      });
+  }
+  
+  const init = () => {
+    promptInit();
+  }
 
 
 
