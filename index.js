@@ -175,5 +175,34 @@ const promptNewDep = () => {
     promptInit();
   }
 
-
+  //query func
+  function showDepartments() {
+    console.log("Showing department table")
+    db.promise().query('SELECT * FROM departments')
+      .then(([rows, fields]) => {
+        console.table(rows);
+        promptContinue()
+      })
+      .catch(console.log)      
+  }
+  
+  function showRoles() {
+    console.log("Showing roles table")
+    db.promise().query('SELECT * FROM roles')
+      .then(([rows, fields]) => {
+        console.table(rows);
+        promptContinue()
+      })
+      .catch(console.log)
+  }
+  
+  function showEmployees() {
+    console.log("Showing employees table")
+    db.promise().query('SELECT * FROM employees')
+      .then(([rows, fields]) => {
+        console.table(rows);
+        promptContinue()
+      })
+      .catch(console.log)
+  }
 
