@@ -206,3 +206,70 @@ const promptNewDep = () => {
       .catch(console.log)
   }
 
+// more query
+
+function createRole(roleName, roleSal, depName) {
+  const name = roleName;
+  const sal = roleSal;
+  const dep = depName;
+
+  db.promise().query(`SELECT id FROM departments where department_name = ?`, [dep])
+    .then(([rows, fields]) => {
+      db.query(`INSERT INTO roles (title,salary,department_id) VALUEs("${name}","${sal}","${rows[0].id}")`, function (err, results) {
+      });
+      showRoles();
+    })
+    .catch(console.log);
+};
+
+function createDepartment(name) {
+  console.log(`Creating new Department`)
+  db.query(`INSERT INTO departments (department_name) VALUES ('${name}')`, function (err, results) {
+    console.log(`${name} added to Departments`);
+    showDepartments();
+  });
+}
+
+function createEmployee(firstName, lastName, defRole, defManager) {
+  const fname = firstName;
+  const lname = lastName;
+  const role = defRole;
+  const manager = defManager;
+  let roleID;
+  let manID;
+
+  db.promise().query(`SELECT id FROM employees where CONCAT(first_name, ' ', last_name) = ?`, [manager])
+    .then(([rows, fields]) => {
+      manID = rows[0].id;
+      db.promise().query(`SELECT id FROM roles where title = ?`, [role])
+        .then(([rows, fields]) => {
+          roleID = rows[0].id;
+          db.query(`INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUEs("${fname}","${lname}","${roleID}","${manID}")`, function (err, results) {
+          });
+          showEmployees();
+        })
+    })
+    .catch(console.log);
+}
+
+function modifyEmployee(name, defRole) {
+  let nameArray = name.split(/(\s+)/);
+  const fname = nameArray[0];
+  const lname = nameArray[2];
+  const role = defRole;
+  let roleID;
+
+  db.promise().query(`SELECT id FROM employees where CONCAT(first_name, ' ', last_name) = ?`, [name])
+    .then(([rows, fields]) => {
+      empID = rows[0].id;
+      db.promise().query(`SELECT id FROM roles where title = ?`, [role])
+        .then(([rows, fields]) => {
+          roleID = rows[0].id;
+          db.query(`UPDATE employees SET first_name = "${fname}", last_name = "${lname}", role_id = "${roleID}" WHERE id = "${empID}"`, function (err, results) {
+          });
+          showEmployees();
+        })
+    })
+    .catch(console.log);
+}
+
