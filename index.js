@@ -273,3 +273,72 @@ function modifyEmployee(name, defRole) {
     .catch(console.log);
 }
 
+//function for array
+
+function deptArray() {
+  return new Promise(
+    (resolve, reject) => {
+      db.query("SELECT * FROM departments", (err, rows) => {
+        if (err) {
+          reject(err);
+        }
+        // resolve(rows.map(row => row.department_name));
+        // resolve(rows.map(({id, department_name}) => ({id: id, name: department_name})));
+        let rowArray = rows.map(({ id, department_name }) => ({ id: id, name: department_name }));
+        resolve(rowArray);
+      })
+    }
+  );
+}
+
+function employeeArray() {
+  return new Promise(
+    (resolve, reject) => {
+      db.query("SELECT * FROM employees", (err, rows) => {
+        if (err) {
+          reject(err);
+        }
+        let rowArray = rows.map(({ id, first_name, last_name }) => ({ id: id, name: first_name + " " + last_name}));
+        resolve(rowArray);
+      })
+    }
+  );
+}
+
+function roleArray() {
+  return new Promise(
+    (resolve, reject) => {
+      db.query("SELECT * FROM roles", (err, rows) => {
+        if (err) {
+          reject(err);
+        }
+        // resolve(rows.map(row => row.department_name));
+        // resolve(rows.map(({id, department_name}) => ({id: id, name: department_name})));
+        let rowArray = rows.map(({ id, title }) => ({ id: id, name: title }));
+        resolve(rowArray);
+      })
+    }
+  );
+}
+
+
+function managerArray() {
+  return new Promise(
+    (resolve, reject) => {
+      db.query("SELECT * FROM employees WHERE role_id = 1", (err, rows) => {
+        if (err) {
+          reject(err);
+        }
+        // resolve(rows.map(row => row.department_name));
+        // resolve(rows.map(({id, department_name}) => ({id: id, name: department_name})));
+        let rowArray = rows.map(({ id, first_name, last_name }) => ({ id: id, name: first_name + " " + last_name }));
+        resolve(rowArray);
+      })
+    }
+  );
+}
+
+
+init();
+
+
